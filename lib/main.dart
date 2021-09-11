@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smart_finance/componets/saldo_total.dart';
+import 'package:smart_finance/models/saldo.dart';
 
 import 'componets/gasto_mes.dart';
 //import 'package:smart_finance/componets/saldo_disponivel.dart';
@@ -7,99 +9,97 @@ void main() {
   runApp(SaldoDisponivel());
 }
 
-class MyApp extends StatelessWidget {
+class SaldoDisponivel extends StatefulWidget {
+  SaldoDisponivel({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new SaldoDisponivel(),
-    );
-  }
+  _SaldoDisponivelState createState() => _SaldoDisponivelState();
 }
 
-class SaldoDisponivel extends StatelessWidget {
-  const SaldoDisponivel({Key? key}) : super(key: key);
-  // This widget is the root of your application.
-  //const SaldoDisponivel({Key? key}) : super(key: key);
+class _SaldoDisponivelState extends State<SaldoDisponivel> {
+  List<String> meuAssets = [
+    "assets/images/nubank.png",
+    "assets/images/bradesco3.png",
+    "assets/images/inter.png"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+            elevation: 0,
             backgroundColor: Colors.deepPurpleAccent[200],
-            toolbarHeight: 250,
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                SizedBox(height: 30),
-                Text('Saldo: R\$\4100,00', style: TextStyle(fontSize: 17)),
-                Container(
-                  //Deixou com atributo de flex
-                  padding: EdgeInsets.only(top: 110),
-                  margin: EdgeInsets.all(0),
-                  width: double.infinity,
-                  alignment: Alignment.bottomLeft,
-                  child: Column(
-                    children: [
-                      Text('Saldo Disponível', style: TextStyle(fontSize: 25)),
-                      Container(
-                        margin: EdgeInsets.all(25),
-                        width: 50,
-                        height: 50,
-                        child: Image(
-                          //alignment: Alignment.bottomLeft,
-                          alignment: Alignment.bottomLeft,
-                          image: AssetImage(
-                            "assets/images/saldo.png",
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-
-            //title: Text('Saldo disponível'),
+            actions: [
+              SaldoTotal([
+                Saldo(
+                    saldoNubank: 800.0,
+                    saldoItau: 2300.00,
+                    saldoBradesco: 1000.0),
+                Saldo(
+                    saldoNubank: 800.0,
+                    saldoItau: 2300.00,
+                    saldoBradesco: 15600.0),
+              ]),
+            ],
             leading: NavTeste()),
         body: Column(
           children: [
-            ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Image(
-                  alignment: Alignment.bottomLeft,
-                  image: AssetImage(
-                    "assets/images/nubank.png",
-                  ),
+            Container(
+              width: double.infinity,
+              color: Colors.deepPurpleAccent[200],
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Saldo Disponível',
+                        style: TextStyle(fontSize: 25, color: Colors.white)),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                        "assets/images/saldo.png",
+                      ))),
+                    ),
+                  ],
                 ),
               ),
-              title: Text('Saldo: R\$\800,00', style: TextStyle(fontSize: 17)),
-              //subtitle: Text('mes'), // posso usar para mostrar o mes
             ),
-            ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Image(
-                  alignment: Alignment.bottomLeft,
-                  image: AssetImage(
-                    "assets/images/bradesco3.png",
-                  ),
-                ),
-              ),
-              title: Text('Saldo: R\$\1000,00', style: TextStyle(fontSize: 17)),
-            ),
-            ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Image(
-                  alignment: Alignment.bottomLeft,
-                  image: AssetImage(
-                    "assets/images/inter.png",
-                  ),
-                ),
-              ),
-              title: Text('Saldo: R\$\2300,00', style: TextStyle(fontSize: 17)),
-            ),
+            Expanded(
+                child: ListView.builder(
+                    itemCount: meuAssets.length,
+                    itemBuilder: (ctx, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40.0, vertical: 10),
+                        child: Container(
+                          width: double.infinity,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                child: Image(
+                                  alignment: Alignment.bottomLeft,
+                                  image: AssetImage(
+                                    meuAssets[index],
+                                  ),
+                                ),
+                              ),
+                              Text('Saldo: R\$\800,00',
+                                  style: TextStyle(fontSize: 17)),
+                            ],
+                          ),
+                        ),
+                      );
+                    }))
           ],
         ),
       ),
