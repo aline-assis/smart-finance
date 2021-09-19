@@ -51,7 +51,7 @@ class _SaldoTotalState extends State<SaldoTotal> {
     setState(() {
       widget._saldos.map((saldo) {
         valorTotalDoMes = valorTotalDoMes + saldo.saldoBradesco;
-        valorTotalDoMes = valorTotalDoMes + saldo.saldoItau;
+        valorTotalDoMes = valorTotalDoMes + saldo.saldoInter;
         valorTotalDoMes = valorTotalDoMes + saldo.saldoNubank;
       }).toList();
     });
