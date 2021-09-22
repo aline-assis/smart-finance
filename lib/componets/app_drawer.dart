@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_finance/screens/perfil_screen.dart';
 import 'package:smart_finance/screens/saldo_screen.dart';
 
 import '../screens/fatura_screen.dart';
@@ -57,6 +58,21 @@ class AppDrawer extends StatelessWidget {
             title: Text('Saldo'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(SaldoScreen.routeName);
+            },
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: Image(
+                image: AssetImage(
+                  "assets/images/setting.png",
+                ),
+              ),
+            ),
+            title: Text('Perfil'),
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(PerfilFormScreen.routeName);
             },
           ),
         ],

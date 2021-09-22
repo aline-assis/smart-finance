@@ -1,13 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_finance/providers/perfil_provider.dart';
 import 'package:smart_finance/screens/auth_screen.dart';
+import 'package:smart_finance/screens/perfil_screen.dart';
 
 import 'screens/fatura_screen.dart';
 import 'providers/auth_provider.dart';
 import 'screens/home_screen.dart';
 import 'screens/saldo_screen.dart';
 
-void main() {
+Future<void> main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(SmartFinanceApp());
 }
 
@@ -18,6 +23,9 @@ class SmartFinanceApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (ctx) => AuthProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => PerfilProvider(),
         )
       ],
       child: Consumer<AuthProvider>(
@@ -34,6 +42,7 @@ class SmartFinanceApp extends StatelessWidget {
           routes: {
             FaturaMensalScreen.routeName: (ctx) => FaturaMensalScreen(),
             SaldoScreen.routeName: (ctx) => SaldoScreen(),
+            PerfilFormScreen.routeName: (ctx) => PerfilFormScreen(),
           },
         ),
       ),
