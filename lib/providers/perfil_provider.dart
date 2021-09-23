@@ -66,7 +66,7 @@ class PerfilProvider with ChangeNotifier {
     final url = Uri.parse(
         "https://smart-finance-e129a-default-rtdb.firebaseio.com/perfil.json");
     return http
-        .post(
+        .put(
       url,
       body: json.encode({
         'id': "-MkACqtmUMFallBxiRse",
