@@ -28,6 +28,7 @@ dependencies:
   mask_text_input_formatter: ^2.0.0
   firebase_core: "^1.6.0"
   cloud_firestore: "^2.5.3"
+  flutter_form_builder: ^6.1.0+1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -58,6 +59,7 @@ flutter:
     - assets/images/invoice.png
     - assets/images/home.png
     - assets/images/setting.png
+    - assets/images/bank.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

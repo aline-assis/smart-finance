@@ -1,11 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '/models/perfil.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PerfilProvider with ChangeNotifier {
-  Perfil? perfil = new Perfil(id: "", cpf: "", banco: "", date: DateTime.now());
+  Perfil? perfil = new Perfil(id: "", cpf: "", date: DateTime.now());
   //FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<void> fetchAndSetPerfil() async {
@@ -25,7 +25,7 @@ class PerfilProvider with ChangeNotifier {
             id: perfilId,
             cpf: perfilData['cpf'],
             date: DateTime.parse(perfilData['date']),
-            banco: perfilData['banco'],
+            // banco: perfilData['banco'],
           );
         },
       );
@@ -45,7 +45,7 @@ class PerfilProvider with ChangeNotifier {
       body: json.encode({
         'cpf': perfil.cpf,
         'date': perfil.date.toString(),
-        'banco': perfil.banco,
+        // 'banco': perfil.banco,
       }),
     )
         .then(
@@ -69,10 +69,10 @@ class PerfilProvider with ChangeNotifier {
         .put(
       url,
       body: json.encode({
-        'id': "-MkACqtmUMFallBxiRse",
+        'id': perfil.id,
         'cpf': perfil.cpf,
         'date': perfil.date.toString(),
-        'banco': perfil.banco,
+        // 'banco': perfil.banco,
       }),
     )
         .then(

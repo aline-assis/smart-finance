@@ -1,7 +1,7 @@
-import 'dart:math';
+// import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:smart_finance/componets/app_drawer.dart';
+// import 'package:smart_finance/componets/app_drawer.dart';
 import '../providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 import '../utils/http_exception.dart';
@@ -164,7 +164,6 @@ class _AuthCardState extends State<AuthCard> {
                     if (value!.isEmpty || !value.contains('@')) {
                       return 'Invalid email!';
                     }
-                    return null;
                     return null;
                   },
                   onSaved: (value) {

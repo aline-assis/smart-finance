@@ -5,7 +5,7 @@ import '/models/perfil.dart';
 import '/componets/app_drawer.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-//import 'package:provider/provider.dart';n sei oq é
+// import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class PerfilFormScreen extends StatefulWidget {
   static const routeName = '/perfil-form';
@@ -18,11 +18,11 @@ class PerfilFormScreen extends StatefulWidget {
 DateTime selectedDate = DateTime.now();
 TextEditingController _dateController = new TextEditingController();
 TextEditingController _cpfController = new TextEditingController();
-TextEditingController _bancoController = new TextEditingController();
+// TextEditingController _bancoController = new TextEditingController();
 
 class _PerfilFormScreenSate extends State<PerfilFormScreen> {
   final _cpfFocusNode = FocusNode();
-  final _bancoFocusNode = FocusNode();
+  // final _bancoFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
   var errorMessage = '';
   final maskCpf = MaskTextInputFormatter(
@@ -34,7 +34,7 @@ class _PerfilFormScreenSate extends State<PerfilFormScreen> {
     id: null,
     cpf: '',
     date: DateTime(2003, 02, 20),
-    banco: '',
+    // banco: '',
   );
 
   var _isLoading = false;
@@ -51,7 +51,7 @@ class _PerfilFormScreenSate extends State<PerfilFormScreen> {
             _perfilId = _formPerfil.id;
             _dateController.text = _formPerfil.date.toString();
             _cpfController.text = _formPerfil.cpf;
-            _bancoController.text = _formPerfil.banco;
+            // _bancoController.text = _formPerfil.banco;
           }
         },
       );
@@ -60,11 +60,11 @@ class _PerfilFormScreenSate extends State<PerfilFormScreen> {
     super.didChangeDependencies();
   }
 
-  @override
-  void dispose() {
-    _bancoFocusNode.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _bancoFocusNode.dispose();
+  //   super.dispose();
+  // }
 
   void _saveForm() {
     final isValid = _form.currentState!.validate();
@@ -104,7 +104,7 @@ class _PerfilFormScreenSate extends State<PerfilFormScreen> {
         });
         if (errorMessage.isEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text('Banco inserido com sucesso!'),
+            content: Text('Dados inserido com sucesso!'),
             behavior: SnackBarBehavior.fixed,
           ));
         }
@@ -137,7 +137,7 @@ class _PerfilFormScreenSate extends State<PerfilFormScreen> {
         elevation: 0,
         backgroundColor: Colors.deepPurpleAccent[200],
         title: Text('Configuração de Perfil'),
-        actions: [IconButton(onPressed: _saveForm, icon: Icon(Icons.save))],
+        // actions: [IconButton(onPressed: _saveForm, icon: Icon(Icons.save))],
       ),
       body: _isLoading
           ? Center(
@@ -157,7 +157,7 @@ class _PerfilFormScreenSate extends State<PerfilFormScreen> {
                             controller: _dateController,
                             keyboardType: TextInputType.datetime,
                             decoration: InputDecoration(
-                              hintText: 'Date of Birth',
+                              hintText: 'Data de Nascimento',
                               prefixIcon: Icon(
                                 Icons.dialpad,
                               ),
@@ -176,7 +176,6 @@ class _PerfilFormScreenSate extends State<PerfilFormScreen> {
                               _formPerfil = new Perfil(
                                 cpf: _formPerfil.cpf,
                                 date: DateTime.parse(value!),
-                                banco: _formPerfil.banco,
                               );
                             },
                           ),
@@ -201,50 +200,42 @@ class _PerfilFormScreenSate extends State<PerfilFormScreen> {
                           // }
                           return null;
                         },
-                        onFieldSubmitted: (value) {
-                          FocusScope.of(context).requestFocus(_bancoFocusNode);
-                        },
                         onSaved: (value) {
                           _formPerfil = new Perfil(
                             cpf: value!,
                             date: _formPerfil.date,
-                            banco: _formPerfil.banco,
                           );
                         },
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'Banco:'),
-                        maxLines: 3,
-                        keyboardType: TextInputType.multiline,
-                        focusNode: _bancoFocusNode,
-                        controller: _bancoController,
-                        onSaved: (value) {
-                          _formPerfil = new Perfil(
-                            cpf: _formPerfil.cpf,
-                            date: _formPerfil.date,
-                            banco: value!,
-                          );
-                        },
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Container(
-                            width: 100,
-                            height: 100,
-                            margin: EdgeInsets.only(
-                              top: 8,
-                              right: 10,
-                            ),
-                          ),
-                        ],
                       ),
                     ],
                   ),
                 ),
               ),
             ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurpleAccent[200],
+        child: Icon(Icons.save),
+        onPressed: _saveForm,
+      ),
       drawer: AppDrawer(),
     );
   }
 }
+
+// final exampleCheckboxGroup = FormBuilderCheckboxGroup(
+//   name: 'name',
+//   options: [
+//     FormBuilderFieldOption(
+//       value: 'nubank',
+//       child: Text('Nubank'),
+//     ),
+//     FormBuilderFieldOption(
+//       value: 'inter',
+//       child: Text('inter'),
+//     ),
+//     FormBuilderFieldOption(
+//       value: 'bradesco',
+//       child: Text('bradesco'),
+//     )
+//   ],
+// );
