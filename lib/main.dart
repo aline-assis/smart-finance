@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_finance/providers/perfil_provider.dart';
 import 'package:smart_finance/screens/auth_screen.dart';
+import 'package:smart_finance/screens/banco_screen.dart';
 import 'package:smart_finance/screens/perfil_screen.dart';
 
 import 'screens/fatura_screen.dart';
@@ -43,6 +44,7 @@ class SmartFinanceApp extends StatelessWidget {
             FaturaMensalScreen.routeName: (ctx) => FaturaMensalScreen(),
             SaldoScreen.routeName: (ctx) => SaldoScreen(),
             PerfilFormScreen.routeName: (ctx) => PerfilFormScreen(),
+            BancoScreen.routeName: (ctx) => BancoScreen(),
           },
         ),
       ),

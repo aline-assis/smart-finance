@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_finance/componets/app_drawer.dart';
-import 'package:smart_finance/screens/fatura_screen.dart';
+// import 'package:smart_finance/screens/fatura_screen.dart';
 import 'package:smart_finance/screens/saldo_screen.dart';
 
 class HomeScreen extends StatelessWidget {
