@@ -38,8 +38,8 @@ class SmartFinanceApp extends StatelessWidget {
             accentColor: Colors.deepPurpleAccent[50],
             fontFamily: 'Roboto',
           ),
-          //home: authData.isAuth! ? HomeScreen() : AuthScreen(),
-          home: authData.isAuth! ? HomeScreen() : HomeScreen(),
+          home: authData.isAuth! ? HomeScreen() : AuthScreen(),
+          // home: authData.isAuth! ? HomeScreen() : HomeScreen(),
           routes: {
             FaturaMensalScreen.routeName: (ctx) => FaturaMensalScreen(),
             SaldoScreen.routeName: (ctx) => SaldoScreen(),
