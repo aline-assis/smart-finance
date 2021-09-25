@@ -39,7 +39,6 @@ class SmartFinanceApp extends StatelessWidget {
             fontFamily: 'Roboto',
           ),
           home: authData.isAuth! ? HomeScreen() : AuthScreen(),
-          // home: authData.isAuth! ? HomeScreen() : HomeScreen(),
           routes: {
             FaturaMensalScreen.routeName: (ctx) => FaturaMensalScreen(),
             SaldoScreen.routeName: (ctx) => SaldoScreen(),
